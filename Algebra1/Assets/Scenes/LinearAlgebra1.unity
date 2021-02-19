@@ -1206,6 +1206,11 @@ MonoBehaviour:
   rb: {fileID: 1813158636}
   walkSpeed: 3
   horizontalMovement: 0
+  mSpeed: 5
+  runSpeed: 8
+  pushSpeed: 50
+  totalJumps: 4
+  jumpCounter: 4
   isGrounded: 0
   groundCheck: {fileID: 970023847}
   checkRadius: 0.5

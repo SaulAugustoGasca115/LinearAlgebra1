@@ -11,6 +11,14 @@ public class CharacterController : MonoBehaviour
     public float walkSpeed;
     public float horizontalMovement;
 
+    //variable para sprintera
+    [Header("Profesoer XD")]
+    public float mSpeed = 5.0f;
+    public float runSpeed;
+    public float pushSpeed;
+    public float totalJumps;
+    public float jumpCounter;
+
     [Header("Grounded")]
     public bool isGrounded;
     public Transform groundCheck;
@@ -34,7 +42,9 @@ public class CharacterController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        dashTime = startDashTime;
+        //dashTime = startDashTime;
+
+        jumpCounter = totalJumps;
     }
 
     // Update is called once per frame
@@ -45,12 +55,21 @@ public class CharacterController : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position,checkRadius,ground); //codigo para saber si esta en el suelo o no esta
 
 
-        WalkRun(); //Esta funcion contiene la logica para que el personaje Camine o Corra
+        //WalkRun(); //Esta funcion contiene la logica para que el personaje Camine o Corra
 
 
-        Jump(); // Esta funcion contiene la logica para que el personaje Brinque en el aire indefinidamente
+        //Jump(); // Esta funcion contiene la logica para que el personaje Brinque en el aire indefinidamente
 
-        Dash(); //Esta funcion contiene la logica para craer una embestida
+        //Dash(); //Esta funcion contiene la logica para craer una embestida
+
+
+        //teacher logic
+        TeacherWalkRun();
+
+        TeacherJump();
+
+        TeacherDash();
+
 
     }
 
@@ -69,6 +88,24 @@ public class CharacterController : MonoBehaviour
         {
             rb.velocity = new Vector2(walkSpeed * horizontalMovement, rb.velocity.y); //esta linea de codigo funciona paraq ue el personaje camine
         }
+
+
+        
+    }
+
+    void TeacherWalkRun()
+    {
+        //Teacher's Alternative
+        if (Input.GetButton("Fire3"))
+        {
+            mSpeed = runSpeed;
+        }
+        else
+        {
+            mSpeed = walkSpeed;
+        }
+
+        rb.velocity = new Vector2(horizontalMovement * mSpeed, rb.velocity.y);
     }
 
 
@@ -77,7 +114,7 @@ public class CharacterController : MonoBehaviour
         //Jump Logic
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce); //esta linea de codigo permite brincar una vez estando en el suelo
+            rb.velocity = new Vector2(rb.velocity.x,jumpForce); //esta linea de codigo permite brincar una vez estando en el suelo
 
           
         }
@@ -86,6 +123,20 @@ public class CharacterController : MonoBehaviour
 
             rb.velocity = new Vector2(rb.velocity.x, jumpForce); // esta linea de codigo permite brincar indefinidamente en el airte
 
+        }
+    }
+
+    void TeacherJump()
+    {
+        if(Input.GetButtonDown("Jump") && jumpCounter > 0)
+        {
+            jumpCounter -= 1;
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        }
+
+        if(isGrounded)
+        {
+            jumpCounter = totalJumps; //se restablece el contador
         }
     }
 
@@ -127,5 +178,26 @@ public class CharacterController : MonoBehaviour
         
 
         
+    }
+
+    void TeacherDash()
+    {
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            print("DASH FUNCTION");
+
+            //pushSpeed -= Time.deltaTime;
+
+            mSpeed = pushSpeed;
+
+
+            rb.velocity = new Vector2(horizontalMovement * mSpeed, rb.velocity.y);
+        }
+        else
+        {
+            mSpeed = walkSpeed;
+        }
+
+        //rb.velocity = new Vector2(horizontalMovement * mSpeed, rb.velocity.y);
     }
 }
