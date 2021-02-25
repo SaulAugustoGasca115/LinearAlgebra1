@@ -43,17 +43,23 @@ public class Slope : MonoBehaviour
         playerAxis = playerPosition2.position - playerPosition1.position;
 
         slopeAxis = slopePosition2.position - slopePosition1.position;
+        Debug.Log("PLAYER POS1 " + playerPosition1.position);
+        Debug.Log("PLAYER POS2 " + playerPosition2.position);
+        Debug.Log("PLAYER AXIS "+playerAxis);
+        Debug.Log("SLOPE AXIS " + slopeAxis);
 
         dotProduct = Vector2.Dot(playerAxis.normalized,slopeAxis.normalized);
 
+        Debug.Log("DOT PTODUCT " + dotProduct);
+
         cosine = Mathf.Acos(dotProduct);
 
-        Debug.Log(Mathf.Rad2Deg * cosine);
+        //Debug.Log(Mathf.Rad2Deg * cosine);
 
         touchingSurfaceRight = Physics2D.OverlapCircle(slopeCheckRight.position,checkRadius,slopes);
 
 
-        print("<color=red> RAIZ:" + Mathf.Sqrt(2)/2 + "</color>");
+        //print("<color=red> RAIZ:" + Mathf.Sqrt(2)/2 + "</color>");
 
         //condicion que permite al character comntroller mover o no mover al jugador en este caso si es es coseno de 45 grados o mayor no puede caminar
         if(touchingSurfaceRight && dotProduct > (Mathf.Sqrt(2)/2))
