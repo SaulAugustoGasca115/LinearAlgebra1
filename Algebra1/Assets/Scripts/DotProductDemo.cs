@@ -132,7 +132,7 @@ public class DotProductDemo : MonoBehaviour
             #region Dot Product
 
 
-            //Calcular el producto punto entre la posicion del mouse en lainterfaz d eunity y el gizmo statico (Arriba,Abajo,Derecha o Izquierda)
+            //Calcular el producto punto entre la posicion del mouse en la interfaz de unity y el gizmo statico (Arriba,Abajo,Derecha o Izquierda)
             //ambos vectores deben estar normalizados
             Dot = Vector2.Dot(MouseWorldRay.normalized, StaticRay.normalized);
 
@@ -179,102 +179,7 @@ public class DotProductDemo : MonoBehaviour
         }
 
 
-        //if (Cam)
-        //{
-        //    #region Mouse To World Position
-
-        //    Vector2 MousePos = Event.current.mousePosition;
-        //    float ppp = EditorGUIUtility.pixelsPerPoint;
-        //    MousePos.y = SceneView.lastActiveSceneView.camera.pixelHeight - MousePos.y * ppp;
-        //    MousePos.x *= ppp;
-
-        //    Vector2 MouseWorldPos = SceneView.lastActiveSceneView.camera.ScreenToWorldPoint(MousePos);
-
-        //    Vector2 HalfWorldPos = MouseWorldPos * 0.5f;
-
-        //    Vector2 mouseOffset = Event.current.mousePosition + new Vector2(12, 12);
-        //    mouseOffset.y = SceneView.lastActiveSceneView.camera.pixelHeight - mouseOffset.y * ppp;
-        //    mouseOffset.x *= ppp;
-        //    Vector2 mouseOffsetWorld = SceneView.lastActiveSceneView.camera.ScreenToWorldPoint(mouseOffset);
-
-        //    #endregion
-
-
-        //    #region Render Ray
-
-        //    Vector2 MouseWorldRay = MouseWorldPos - Vector2.zero;
-
-        //    Magnitude = MouseWorldRay.magnitude;
-
-        //    if (RenderRay_ToMouse)
-        //    {
-        //        Gizmos.color = Color.blue;
-        //        Gizmos.DrawRay(Vector2.zero, MouseWorldRay);
-        //        GUIStyle style = new GUIStyle();
-        //        style.normal.textColor = Color.blue;
-        //        Handles.Label(mouseOffsetWorld, "(x:" + MouseWorldPos.x.ToString("0.000") + ",y:" + MouseWorldPos.y.ToString("0.000") + ")", style);
-
-        //        Handles.Label(HalfWorldPos, "Length:" + MouseWorldRay.magnitude.ToString("0.000"), style);
-        //    }
-
-        //    #endregion
-
-
-        //    #region Render Ray - Normalized
-
-        //    if (RenderRay_ToMouseNormalized)
-        //    {
-        //        Gizmos.color = new Color(0.5f, 0.5f, 1f, 1f);
-        //        Gizmos.DrawRay(Vector2.zero, MouseWorldRay.normalized);
-        //    }
-
-        //    #endregion
-
-
-        //    #region Dot Product
-
-        //    //Calculate the dot product of the MouseWorldRay vs the static ray - both rays must be normalized!
-        //    Dot = Vector2.Dot(MouseWorldRay.normalized, StaticRay.normalized);
-
-        //    if (RenderDot)
-        //    {
-        //        GUIStyle style = new GUIStyle();
-        //        style.normal.textColor = Color.white;
-        //        Handles.Label(Vector2.zero, "Dot Product:" + Dot.ToString("0.00"), style);
-        //    }
-
-        //    #endregion
-
-
-        //    #region Dot Product - Intersecting Line
-
-        //    if (RenderDot_IntersectingLine)
-        //    {
-        //        Gizmos.color = Color.white;
-        //        Gizmos.DrawLine(new Vector2(Dot, 1f), new Vector2(Dot, -1f));
-
-        //        GUIStyle style = new GUIStyle();
-        //        style.normal.textColor = Color.white;
-        //        Handles.Label(new Vector2(Dot, -1f), "Dot x:" + Dot.ToString("0.00"), style);
-        //    }
-
-        //    #endregion
-
-
-        //    #region Angle
-
-        //    if (RenderAngle)
-        //    {
-        //        //Get the Arc Cosine of the Dot Product, then convert it from radians to degrees.
-        //        float Angle = Mathf.Acos(Dot) * Mathf.Rad2Deg;
-
-        //        GUIStyle style = new GUIStyle();
-        //        style.normal.textColor = Color.yellow;
-        //        Handles.Label(new Vector2(0f, -0.05f), "Angle:" + Angle.ToString("0.00") + " Degrees", style);
-        //    }
-
-        //    #endregion
-        //}
+       
 
     }
 }
